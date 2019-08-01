@@ -19,6 +19,8 @@ class MemberServiceProvider extends ServiceProvider
         $this->registerViews();
         $this->registerFactories();
         $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
+        $this->registerService();
+        $this->registerRepository();
     }
 
     /**
@@ -39,10 +41,11 @@ class MemberServiceProvider extends ServiceProvider
     protected function registerConfig()
     {
         $this->publishes([
-            __DIR__.'/../Config/config.php' => config_path('member.php'),
+            __DIR__ . '/../Config/config.php' => config_path('member.php'),
         ], 'config');
         $this->mergeConfigFrom(
-            __DIR__.'/../Config/config.php', 'member'
+            __DIR__ . '/../Config/config.php',
+            'member'
         );
     }
 
@@ -55,11 +58,11 @@ class MemberServiceProvider extends ServiceProvider
     {
         $viewPath = resource_path('views/modules/member');
 
-        $sourcePath = __DIR__.'/../Resources/views';
+        $sourcePath = __DIR__ . '/../Resources/views';
 
         $this->publishes([
             $sourcePath => $viewPath
-        ],'views');
+        ], 'views');
 
         $this->loadViewsFrom(array_merge(array_map(function ($path) {
             return $path . '/modules/member';
@@ -78,7 +81,7 @@ class MemberServiceProvider extends ServiceProvider
         if (is_dir($langPath)) {
             $this->loadTranslationsFrom($langPath, 'member');
         } else {
-            $this->loadTranslationsFrom(__DIR__ .'/../Resources/lang', 'member');
+            $this->loadTranslationsFrom(__DIR__ . '/../Resources/lang', 'member');
         }
     }
 
@@ -89,9 +92,30 @@ class MemberServiceProvider extends ServiceProvider
      */
     public function registerFactories()
     {
-        if (! app()->environment('production')) {
+        if (!app()->environment('production')) {
             app(Factory::class)->load(__DIR__ . '/../Database/factories');
         }
+    }
+
+
+    /**
+     * repository interface bind
+     *
+     * @return void
+     */
+    public function registerRepository()
+    {
+        $this->app->register(RepositoryServiceProvider::class);
+    }
+
+    /**
+     * service interface bind
+     *
+     * @return void
+     */
+    public function registerService()
+    {
+        $this->app->register(ServiceServiceProvider::class);
     }
 
     /**

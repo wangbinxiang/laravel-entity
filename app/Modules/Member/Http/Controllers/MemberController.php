@@ -4,7 +4,9 @@ namespace App\Modules\Member\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Routing\Controller;
+// use Illuminate\Routing\Controller;
+
+use App\System\Controllers\Controller;
 
 class MemberController extends Controller
 {
