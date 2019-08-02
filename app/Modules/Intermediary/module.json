@@ -1,0 +1,14 @@
+{
+    "name": "Intermediary",
+    "alias": "intermediary",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 0,
+    "providers": [
+        "App\\Modules\\Intermediary\\Providers\\IntermediaryServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

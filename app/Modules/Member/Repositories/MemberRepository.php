@@ -3,6 +3,7 @@
 namespace App\Modules\Member\Repositories;
 
 use App\Modules\Member\Models\Member;
+use App\Modules\Member\Transformers\MemberTransformer;
 
 use App\System\Repositories\BaseModelRepositoryEloquent;
 
@@ -13,6 +14,12 @@ use App\System\Repositories\BaseModelRepositoryEloquent;
  */
 class MemberRepository extends BaseModelRepositoryEloquent implements MemberRepositoryInterface
 {
+
+    protected function transformer()
+    {
+        return MemberTransformer::class;
+    }
+
     public function model()
     {
         return Member::class;

@@ -4,6 +4,8 @@ namespace App\System\Repositories;
 
 use Prettus\Repository\Contracts\RepositoryInterface;
 
+use App\System\Transformers\BaseTransformer;
+
 /**
  * Interface BaseModelRepository.
  *
@@ -11,5 +13,10 @@ use Prettus\Repository\Contracts\RepositoryInterface;
  */
 interface BaseModelRepositoryInterface extends RepositoryInterface
 {
-    //
+
+
+    public function setTransformer(BaseTransformer $transformer);
+    // {
+    //     $this->transformer = $transformer;
+    // }
 }

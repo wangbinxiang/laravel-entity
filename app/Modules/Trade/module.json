@@ -1,0 +1,14 @@
+{
+    "name": "Trade",
+    "alias": "trade",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 0,
+    "providers": [
+        "App\\Modules\\Trade\\Providers\\TradeServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}
