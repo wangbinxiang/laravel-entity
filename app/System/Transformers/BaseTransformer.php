@@ -18,5 +18,5 @@ abstract class BaseTransformer
     //     return parent::toArray($request);
     // }
 
-    abstract public function toEntity(Model $model): string;
+    abstract public function toEntity(Model $model);
 }

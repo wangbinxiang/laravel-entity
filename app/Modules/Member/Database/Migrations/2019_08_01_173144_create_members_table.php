@@ -18,7 +18,7 @@ class CreateMembersTable extends Migration
             $table->char('cellphone', '16');
             // $table->string('email')->unique();
             // $table->timestamp('email_verified_at')->nullable();
-            $table->char('password', '16');
+            $table->char('password');
             $table->rememberToken();
             $table->timestamps();
         });

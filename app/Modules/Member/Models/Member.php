@@ -2,7 +2,7 @@
 
 namespace App\Modules\Member\Models;
 
-use App\System\models\BaseModel;
+use App\System\Models\BaseModel;
 
 /**
  * Class BaseModel.
@@ -17,7 +17,7 @@ class Member extends BaseModel
      *
      * @var string
      */
-    protected $table = 'member_members';
+    protected $table = 'members';
 
     /**
      * The attributes that are mass assignable.

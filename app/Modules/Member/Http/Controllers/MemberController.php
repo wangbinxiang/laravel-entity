@@ -7,16 +7,33 @@ use Illuminate\Http\Response;
 // use Illuminate\Routing\Controller;
 
 use App\System\Controllers\Controller;
+use App\Modules\Member\Services\MemberServiceInterface;
 
 class MemberController extends Controller
 {
+
+
+    public function __construct(MemberServiceInterface $memberService)
+    {
+        $this->service = $memberService;
+    }
+
+
     /**
      * Display a listing of the resource.
      * @return Response
      */
     public function index()
     {
-        return view('member::index');
+        // $member = $this->service->member('1');
+        // var_dump($member->getId());
+        // var_dump($member->getCellphone());
+        // var_dump($member->getPassword());
+        // var_dump($member->getRememberToken());
+        // var_dump($member->getCreateTime());
+        // var_dump($member->getUpdateTime());
+        $members = $this->service->search();
+        dd($members);
     }
 
     /**

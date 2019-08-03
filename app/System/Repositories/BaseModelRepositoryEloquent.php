@@ -3,6 +3,8 @@
 namespace App\System\Repositories;
 
 use Illuminate\Container\Container as Application;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 use App\System\Transformers\BaseTransformer;
@@ -47,7 +49,7 @@ abstract class BaseModelRepositoryEloquent extends BaseRepository implements Bas
         $transformer = $this->app->make($this->transformer());
 
         if (!$transformer instanceof BaseTransformer) {
-            // throw new Exception("Class {$this->model()} must be an instance of Illuminate\\Database\\Eloquent\\Model");
+            throw new Exception("Class {$this->transformer()} must be an instance of App\System\\Transformers\\BaseTransformer");
         }
 
         return $this->transformer = $transformer;
@@ -96,10 +98,14 @@ abstract class BaseModelRepositoryEloquent extends BaseRepository implements Bas
     {
         // 需要转换器转换成 entity
         if ($result instanceof Collection || $result instanceof LengthAwarePaginator) {
-            $result->each(function ($model) {
-                // 调用转换器
-                return $this->transformer->toEntity($model);
-            });
+            foreach ($result as $key => $model) {
+                $result[$key] = $this->transformer->toEntity($model);
+            }
+            // $result->each(function ($model) {
+            //     // 调用转换器
+            //     return $this->transformer->toEntity($model);
+            // });
+            // dd($result);
         } elseif ($result instanceof Model) {
             // 调用转换器
             $result =  $this->transformer->toEntity($result);

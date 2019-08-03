@@ -15,7 +15,7 @@ interface BaseModelRepositoryInterface extends RepositoryInterface
 {
 
 
-    public function setTransformer(BaseTransformer $transformer);
+    // public function setTransformer(BaseTransformer $transformer);
     // {
     //     $this->transformer = $transformer;
     // }
