@@ -26,4 +26,19 @@ class MemberTransformer extends BaseTransformer
 
         return $member;
     }
+
+    public function toEloquent(Member $member)
+    {
+        $model = EloquentMember::find($member->id);
+
+        $model->fill([
+			'cellphone' => $member->getCellphone(),
+			'password' => $member->getPassword(),
+            'remember_token' => $member->getRememberToken(),
+            'created_at' => $member->getCreateTime(),
+            'updated_at' => $member->getUpdateTime(),
+        ]);
+
+		return $model;
+    }
 }

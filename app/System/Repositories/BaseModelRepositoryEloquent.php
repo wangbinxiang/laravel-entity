@@ -61,7 +61,7 @@ abstract class BaseModelRepositoryEloquent extends BaseRepository implements Bas
      *
      * @return string
      */
-    abstract public function model();
+    // abstract public function model();
     // {
     //     return BaseModel::class;
     // }
