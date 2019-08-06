@@ -2,7 +2,6 @@
 
 namespace App\System\Repositories;
 
-use Illuminate\Container\Container as Application;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Model;
@@ -10,7 +9,6 @@ use Illuminate\Database\Eloquent\Model;
 use App\System\Transformers\BaseTransformer;
 
 use Prettus\Repository\Eloquent\BaseRepository;
-use Prettus\Repository\Criteria\RequestCriteria;
 
 /**
  * Class BaseModelRepositoryEloquent.
@@ -26,17 +24,6 @@ abstract class BaseModelRepositoryEloquent extends BaseRepository implements Bas
      * @var BaseTransformer
      */
     protected $transformer;
-
-
-    /**
-     * @param Application $app
-     */
-    public function __construct(Application $app)
-    {
-        parent::__construct($app);
-
-        $this->makeTransformer();
-    }
 
     abstract protected function transformer();
 
@@ -83,8 +70,20 @@ abstract class BaseModelRepositoryEloquent extends BaseRepository implements Bas
      */
     public function boot()
     {
-        $this->pushCriteria(app(RequestCriteria::class));
+        $this->makeTransformer();
     }
+
+
+    /**
+     * firstOrNew
+     * firstOrCreate
+     * create
+     * update
+     * updateOrCreate
+     * delete
+     * deleteWhere
+     *  字段映射
+     */
 
 
     /**
